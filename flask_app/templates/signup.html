@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<head>
+    <!-- stylesheet information    -->
+    <link rel="login stylesheet" href="../static/main/css/login.css">
+    <title>Pavel Shevchenko's Personal Page</title>
+    <meta name="description" content="My first page">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<main class="login_main">
+    <div class="signup">
+        <div id="message">Please enter your credentials</div>
+        <form id="signup-form" action="/createaccount" method="POST">
+            Email: <input type="email" name='email' id="email" required><br>
+            Password: <input type="password" name='password'id="password" required><br>
+            <button id="createaccount">Create Account</button>
+        </form>
+    </div>
+</main>
+

@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block maincontent %}
+    <div class="feedback-container">
+        <div id="feedback-entries">
+            <!-- The server-rendered feedback entries will go here -->
+            {% for feedback in feedback_entries %}
+                <div class="feedback-entry">
+                    <strong>{{ feedback.name }}</strong> ({{ feedback.email }}) wrote:
+                    <p>{{ feedback.comment }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

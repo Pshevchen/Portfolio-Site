@@ -1,0 +1,234 @@
+{% extends 'layout.html' %}
+
+{% block maincontent %}
+<div class="board-disp">
+        <h2>
+            {{board_name}} 
+            <button class='add-column-btn' id="{{board_id}}">+ Add a Column</button>
+        </h2>
+        
+
+
+    <div id="columns-container">
+        {% for column in columns %}
+        <div class="list" id="{{ column.column_id }}">
+            <h3>{{ column.column_name }}</h3>
+            <div class="cards-container">
+            {% for card in column.cards %}
+            <div class="card" id="card-{{ card.id }}" data-db-id="{{ card.card_id }}">
+                <div class="card-content">{{ card.card_content }}</div>
+                <button class="edit-card-btn">Edit</button>
+                <button class="delete-card-btn">Delete</button>
+            </div>
+            {% endfor %}
+            </div>
+            <button class="add-card-btn" data-column-id="{{ column.column_id }}">+ Add a card</button>
+        </div>
+        
+        {% endfor %}
+    </div>
+    
+</div>
+
+<button id="chat-button">Chat</button>
+
+<div id='chat-container'class="chat-container">
+    <div id='chat'></div>
+    <input title='message' type="text" id="message_input" placeholder="Enter Your Message Here">
+    <button id="leave">Leave Chat</button>
+</div>
+
+<script src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+<script src="https://cdn.socket.io/3.1.1/socket.io.min.js" defer></script>
+<script src="../static/main/js/chat.js" defer></script>
+
+
+<script>
+document.querySelectorAll('.add-card-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const cardsContainer = button.previousElementSibling;
+        const columnId = button.getAttribute('data-column-id');
+
+        const cardContent = prompt("Enter card content");
+
+        if (cardContent === null || cardContent.trim() === '') {
+            return;
+        }
+
+        if (cardContent && cardContent.trim() !== '') {
+            fetch('/add_card', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ column_id: columnId, card_content: cardContent })
+            }).then(response => response.json())
+            .then(data => {
+                const newCard = document.createElement('div');
+                newCard.className = 'card';
+                newCard.setAttribute('data-db-id', data.card_id); // Ensure this is set correctly
+                newCard.innerHTML = `
+                    <div class="card-content">${cardContent}</div>
+                    <button class="edit-card-btn">Edit</button>
+                    <button class="delete-card-btn">Delete</button>
+                `;
+                cardsContainer.appendChild(newCard);
+                setupCardInteractions(newCard); // Make sure new card is immediately interactive
+            });
+        }
+        else {
+            alert(data.message);  // Display error message if not successful
+        }
+        
+          
+    })
+});
+
+function enableDrag(card) {
+    if (!NodeList.prototype.isPrototypeOf(card)) {
+        cards = [card];  // Normalize single elements into an array
+    }
+    cards.forEach(card => {
+        card.setAttribute('draggable', true);
+        card.removeEventListener('dragstart', handleDragStart); // Remove existing listeners to prevent duplicates
+        card.addEventListener('dragstart', handleDragStart);
+    });
+}
+
+function enableDrop(containers) {
+    if (!NodeList.prototype.isPrototypeOf(containers)) {
+        containers = [containers];  // Normalize single elements into an array
+    }
+    containers.forEach(container => {
+        container.removeEventListener('dragover', handleDragOver); // Remove existing listeners to prevent duplicates
+        container.removeEventListener('drop', handleDrop); // Remove existing listeners to prevent duplicates
+        container.addEventListener('dragover', handleDragOver);
+        container.addEventListener('drop', handleDrop);
+    });
+}
+
+function handleDragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.getAttribute('data-db-id'));
+    e.dataTransfer.dropEffect = 'move';
+    e.target.classList.add('dragging');
+}
+
+// Function to handle Drag Over
+function handleDragOver(e) {
+    e.preventDefault();  // Necessary to allow dropping
+    e.dataTransfer.dropEffect = 'move';
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    const cardDbId = e.dataTransfer.getData('text/plain');
+
+    const draggedCard = document.querySelector(`[data-db-id="${cardDbId}"]`);
+    if (!draggedCard) {
+        console.error('Dragged card not found:', cardDbId);
+        return;
+    }
+
+    let dropTarget = e.target;
+    while (dropTarget && !dropTarget.classList.contains('cards-container')) {
+        dropTarget = dropTarget.parentElement;
+    }
+
+    if (dropTarget && dropTarget.classList.contains('cards-container')) {
+        dropTarget.appendChild(draggedCard);
+        draggedCard.classList.remove('dragging');
+
+        const columnId = dropTarget.parentElement.id;  // Assuming the parent div has the column ID
+        updateCardPosition(cardDbId, columnId);
+    } else {
+        console.error('Invalid drop target:', e.target);
+    }
+}
+
+function updateCardPosition(cardId, newColumnId) {
+    fetch('/update_card_position', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ card_id: cardId, new_column_id: newColumnId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (!data.success) {
+            alert('Failed to update card position.');
+        }
+    });
+}
+
+// Setup interactions for new cards
+function setupCardInteractions(card) {
+    enableDrag(card); // Now passing an array with the new card
+    const container = card.closest('.cards-container');
+    enableDrop(container); // Ensuring container is ready for drop events
+}
+
+function setupColumnInteractions(container) {
+    enableDrop(container);
+}
+
+document.querySelectorAll('.add-column-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const columnName = prompt("Enter the name of the new column:");
+        if (!columnName || columnName.trim() === '') {
+            return; // Exit if no name was entered
+        }
+        // Example: Assuming board_id is stored as a data attribute on the button
+        const boardId = button.getAttribute('id')
+
+        fetch('/add_column', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: columnName, board_id: boardId })
+        }).then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const newColumn = document.createElement('div');
+                newColumn.className = 'list';
+                newColumn.id = `column-${data.column_id}`;
+                newColumn.innerHTML = `
+                    <h3>${columnName}</h3>
+                    <div class="cards-container"></div>
+                    <button class="add-card-btn">+ Add a card</button>
+                `;
+                document.getElementById('columns-container').appendChild(newColumn);
+                setupCardInteractions(newColumn);
+            } else {
+                alert('Failed to add column: ' + data.message);
+            }
+        });
+    });
+});
+
+// Add a new card to the specified list
+function addCardToList(cardsContainer, cardContent) {
+    // Create the card element
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.textContent = cardContent;
+
+    // Assign a unique ID to the card for drag-and-drop identification
+
+
+    // Add the card to the cardsContainer
+    cardsContainer.appendChild(card);
+
+
+}
+
+
+// Initialize drag and drop for existing cards and lists
+
+document.querySelectorAll('.card').forEach(enableDrag);
+document.querySelectorAll('.cards-container').forEach(enableDrop);
+
+
+</script>
+
+
+{% endblock %}

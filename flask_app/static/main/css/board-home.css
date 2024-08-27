@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    justify-content: center;
+    height: 100vh;
+  }
+main {
+    height: 74vh;
+    
+    
+}
+
+.board-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup {
+  width: 300px;
+  padding: 40px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.board {
+  background-color: darkslategray;
+  border-radius: 5px;
+  display: flex;
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  justify-content: center;
+  align-items: center;
+}
+
+.create-board-btn {
+  background-color: #0079bf;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 20px;
+  width: 200px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+#create-board-form input[type="text"],
+#create-board-form input[type="email"],
+#create-board-form textarea {
+  display: block;
+  width: 90%; /* Full width */
+  padding: 5px;
+  margin: 0px; /* Margin for spacing between inputs */
+  border: 1px solid #000;
+  border-radius: 4px; /* Rounded corners */
+}
+
+#create-board-form button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #fff; /* Bootstrap's btn-success color */
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer; /* Cursor style when hovering over the button */
+  border: 1px solid #000;
+  margin: 3px;
+}
+
+#create-board-form button[type="submit"]:hover {
+  background-color: #4cae4c; /* Slightly darker green */
+}
+
+.create-board-btn:hover {
+  background-color: #026aa7;
+}
+
+#create-board-form {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#board-list {
+  display: grid;
+  padding: 10px;
+  margin: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+}

@@ -1,0 +1,125 @@
+/* Styling for main section of piano page */
+.pianobody {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    margin: 0px;
+}
+
+/* Styling for poem about piano */
+.poem {
+    margin: 20px;
+    font-size: 1.2em;
+}
+
+/* Styling for piano name box */
+.piano-name {
+    position: relative;
+    top: 45px;
+    width: 420px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+}
+
+/* Class for piano flex box and styling */
+.piano {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 300px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: #222;
+    padding: 20px 0;
+}
+
+/* Attributes for both white and black keys */
+.white-key, .black-key {
+    position: relative;
+    border: 4px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Class with white key specific styling */
+.white-key {
+    background-color: white;
+    align-items: end;
+    height: 250px;
+    top: 50px;
+    width: 40px;
+    margin: 1px;
+    z-index: 1;
+}
+
+/* Class with black key specific styling */
+.black-key {
+    background-color: black;
+    height: 135px;
+    width: 30px;
+    top: 51px;
+    border-radius: 8px;
+    margin: 0 -15px;
+    position: relative;
+    z-index: 2;
+}
+
+.key {
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Class for piano key letters */
+.letter {
+    display: none;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    color: #333;
+    font-size: 18px;
+}
+
+/* Styling for letters in black keys */
+.black-key > .letter {
+    color: white;
+}
+
+/* Styling for letters in white keys */
+.white-key > .letter {
+    color: black;
+}
+
+/* Class to add attributes to keys when pressed */
+.active {
+    transform: scale(0.98);
+    box-shadow: inset 0 0 5px #000;
+}
+
+/* Great one image box and styling for when piano fades out */
+.piano-image {
+    position: relative;
+    bottom: 300px;
+    display: none;
+    object-fit: scale-down;
+    opacity: 0;
+    width: 350px;
+    height: 350px;
+
+}
+
+/* Styling for image inside piano image box */
+.piano-image > img {
+    width: 350px;
+    height: 350px;
+}
+
+/* Styling adjustment for mobile view */
+@media screen and (max-width: 650px) {
+    .homepage {
+        height: 750px;
+        max-height: 3500px;
+    }
+
+}

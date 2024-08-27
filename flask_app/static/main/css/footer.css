@@ -1,0 +1,21 @@
+/* Styling for footer flex box */
+footer {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 50px;
+    color: white;
+    background: darkslategray;
+    object-fit: contain;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Text box for footer text */
+.footerbox
+{
+    width: 100vw;
+    height: 5vh;
+    text-align: center;
+    align-items: center;
+
+}

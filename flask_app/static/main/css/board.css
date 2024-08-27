@@ -1,0 +1,125 @@
+body, h2, h3 {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    flex: 1;
+}
+
+.board-disp {
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #0079bf;
+}   
+
+.list {
+    width: 20%;
+    min-width: 20%;
+    height: 90%;
+    background-color: #ebecf0;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.cards-container { 
+    min-height: 50px;
+    min-width: 20%;
+    height: 85%;
+    overflow-y: auto;
+}
+
+.add-card-btn {
+    background-color: #0079bf;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.add-card-btn:hover {
+    background-color: #dfe1e6;
+}
+
+.dragging {
+    opacity: 0.5;
+}
+/* Button to show feedback form */
+#chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 11;
+}
+
+#chat-container {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Initially invisible */
+    z-index: 10;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
+}
+
+
+#columns-container {
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background-color: #0079bb;
+    flex: 8;
+    height: 90%;
+    flex-direction: horizontal;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+}
+
+/* Styles for individual cards */
+.card {
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.card-content {
+    margin-bottom: 10px; /* Space for the buttons */
+}
+
+/* Button styles common for edit and delete */
+.add-card-btn, .edit-card-btn, .delete-card-btn {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    color: #fff;
+    background-color: #5aac44;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-card-btn {
+    background-color: #ff9900; /* Orange for edit */
+}
+
+.delete-card-btn {
+    background-color: #eb5a46; /* Red for delete */
+}
+
+.add-card-btn {
+    background-color: #0079bf; /* Blue similar to column headers */
+}
+
+/* Handling hover states for buttons */
+.add-card-btn:hover, .edit-card-btn:hover, .delete-card-btn:hover {
+    opacity: 0.9;
+}

@@ -1,0 +1,134 @@
+/* General navigation box styling */
+nav {
+    background-color: darkslategray;
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+    width: 100vw;
+    height: 10vh;
+    font-family: 'Arial', sans-serif;
+    text-decoration: none;
+}
+
+/* navigation bar title flex box */
+.navbartitle {
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+}
+
+/* styling for hyperlinks inside of div */
+div > a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Styling for hyperlinks after visitation inside of div */
+div > a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+/* Navigation icon flex*/
+.navicons {
+    align-items: center;
+    justify-content: right;
+    width: 50vw;
+    display: flex;
+}
+
+/* Styling for icons */
+.navicon {
+    text-align: center;
+    flex: 1;
+}
+
+/* Navigation icon hover styling */
+.navicon > a:hover {
+    opacity: 75%;
+}
+
+/* LinkedIn icon styling */
+.linkedin {
+    object-fit: contain;
+    width: 7vw;
+    height: 7vh;
+}
+
+/* Menu toggle class */
+.menu-toggle {
+    display: none;
+}
+
+/* Make checkbox not appear */
+input {
+    display: none;
+}
+
+/* Menu content class styling */
+.menu-content {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 20vh;
+    transition: max-height;
+    width: 100vw;
+    height: 500px;
+    padding: 10px;
+    background: gray;
+    transform-box: fill-box;
+}
+
+/* Hide menu until clicked styling*/
+.menu {
+    display: none;
+    text-align: center;
+}
+
+/* Menu content hyperlink styling */
+.menu-content a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: white;
+}
+
+/* Mobile view style adjusting */
+@media screen and (max-width: 650px) {
+    .navicon {
+        display: none;
+    }
+
+    input {
+        display: none;
+    }
+
+
+    .menu {
+        display: block;
+        padding: 7px;
+        width: 20vw;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .linkedin {
+        object-fit: contain;
+        width: 7vw;
+        height: 7vh;
+    }
+
+    nav a:hover {
+        opacity: 75%;
+    }
+
+    /* Show menu content when checkbox is checked */
+    #menu-toggle:checked ~ .menu-content {
+        display: block;
+    }
+
+
+}

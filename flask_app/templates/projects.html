@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block maincontent %}
+    <main class="projectpage">
+        <div class="projects">
+            <h1>Below is a list of projects I worked on in CSE477:</h1>
+            <p>Click an image, or hyperlink in the description to learn more</p>
+        </div>
+        <div class="projectbox">
+            <div class="selfphotobox">
+                <a href="/piano"><img src="../static/main/images/piano.jpeg"></a>
+            </div>
+            <div class="aboutbox">
+                <h3>Javascript Piano</h3>
+                <p>As a part of my first homework assignment in CSE477, I developed an interactive piano
+                    built with HTML, CSS, and JavaScript. This tool (in addition to my webpage) highlights
+                    my ability to build beautiful and mobile-friendly front-end applications.
+                    <a href="/piano">Click here to see and play!</a>
+                </p>
+            </div>
+        </div>
+        <div>
+            <h2>More coming soon...</h2>
+
+        </div>
+
+    </main>
+{% endblock %}
+

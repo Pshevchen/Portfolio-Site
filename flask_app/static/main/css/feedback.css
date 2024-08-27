@@ -1,0 +1,54 @@
+#feedback-form {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Initially invisible */
+    z-index: 10;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Button to show feedback form */
+#feedback-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 11;
+}
+
+#feedback-form input[type="text"],
+#feedback-form input[type="email"],
+#feedback-form textarea {
+    display: block;
+    width: 90%; /* Full width */
+    padding: 10px;
+    margin: 10px 0; /* Margin for spacing between inputs */
+    border: 1px solid #fff;
+    border-radius: 4px; /* Rounded corners */
+}
+
+#feedback-form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #fff; /* Bootstrap's btn-success color */
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer; /* Cursor style when hovering over the button */
+}
+
+#feedback-form button[type="submit"]:hover {
+    background-color: #4cae4c; /* Slightly darker green */
+}
+
+.feedback-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.feedback-entry {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}

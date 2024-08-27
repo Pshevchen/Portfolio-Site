@@ -1,0 +1,68 @@
+/* Chat container styles */
+.chat-container {
+    width: 90%;
+    max-width: 80%; /* Adjusted to percentage */
+    margin: 2% auto;
+    padding: 1%;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+#chat {
+    height: 300px; /* Height might be best left in px for consistency */
+    border: 1px solid #ccc;
+    margin-bottom: 1%; /* Margin in percentage */
+    padding: 0.5rem; /* Padding is small, so kept in rem */
+    overflow-y: auto;
+    background-color: #f8f8f8;
+}
+
+#message_input {
+    display: block;
+    width: 98%; /* Subtract the width of the send button */
+    padding: 1%; /* Padding in percentage */
+    margin-right: 0.5%; /* Margin in percentage */
+    border: 1px solid #ccc;
+    border-radius: 0.25rem; /* Border radius is small, so kept in rem */
+    float: left; /* Align with the send button */
+}
+
+#send_message {
+    width: 10%; /* Fixed percentage for the send button */
+    padding: 0.5rem; /* Padding is small, so kept in rem */
+    background-color: #28a745; /* Bootstrap success green */
+    color: #FFF;
+    border: none;
+    border-radius: 0.25rem; /* Border radius is small, so kept in rem */
+    cursor: pointer;
+}
+
+#send_message:hover {
+    background-color: #218838; /* Darken the green a bit on hover */
+}
+
+button#leave {
+    width: 100%;
+    padding: 0.75rem; /* Padding is small, so kept in rem */
+    background-color: #dc3545; /* Bootstrap danger red */
+    color: #FFF;
+    border: none;
+    border-radius: 0.25rem; /* Border radius is small, so kept in rem */
+    cursor: pointer;
+    margin-top: 1%; /* Margin in percentage */
+    clear: both; /* Clear the float */
+}
+
+button#leave:hover {
+    background-color: #c82333; /* Darken the red a bit on hover */
+}
+
+.message-owner {
+    color: #0000FF;
+    text-align: right;
+}
+
+.message-other {
+    color: #000;
+    text-align: left;
+}

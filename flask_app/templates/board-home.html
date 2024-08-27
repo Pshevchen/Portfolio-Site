@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block maincontent %}
+
+<!-- Button to create a new board -->
+<div class="board-section">
+    <button id="view-existing" class="create-board-btn">View existing boards</button>
+    <button id='create-board-btn'class="create-board-btn">Create new board</button>
+</div>
+
+<div id="create-board-form">
+    <form id="board-form" action="/createboard" method="post">
+        <label for="name">Project Name:</label>
+        <input title="Text for name" type="text" name="name" id="name" required><br></br>
+        <label for="users_invited">List of Users to Invite:</label>
+        <input type='text' name="users_invited" id="users_invited" placeholder="user1,user2,user3..." required></textarea>
+        <button type="submit" id="submit">Submit</button>
+    </form> 
+</div>
+
+<div id="board-list">
+</div>
+
+
+<script>
+    // JavaScript to toggle the feedback form
+    var viewBoards = document.getElementById('view-existing');
+    var createBoard = document.getElementById('create-board-form');
+    var visible = false; 
+
+    document.getElementById('create-board-btn').onclick = function() {
+        // Tracks the visibility state of the form
+        visible = !visible;
+        createBoard.style.display = visible ? 'block' : 'none';
+    };
+    viewBoards.onclick = function() {
+        location.assign('/boards')
+    }
+
+    document.getElementById('board-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        createBoard.style.display = visible ? 'none' : 'block';
+        fetch('/createboard', {
+            method: 'POST',
+            body: new FormData(document.getElementById('board-form'))
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Use the boardName from the response to update the UI
+                location.assign('/boards')
+            
+            } else {
+                alert('Failed to create board');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+
+{% endblock %}
+

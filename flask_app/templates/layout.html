@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <!-- stylesheet information    -->
+    <link rel="header stylesheet" href="../static/main/css/header.css">
+    <link rel="main stylesheet" href="../static/main/css/main.css">
+    <link rel="main stylesheet" href="../static/main/css/board-home.css">
+    <link rel="footer stylesheet" href="../static/main/css/footer.css">
+    <link rel="navbar stylesheet" href="../static/main/css/navbar.css">
+    <link rel="login stylesheet" href="../static/main/css/login.css">
+    <link rel="chat stylesheet" href="../static/main/css/chat.css">
+    <link rel="chat stylesheet" href="../static/main/css/board.css">
+    <title>Pavel Shevchenko's Personal Page</title>
+    <meta name="description" content="My first page">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+    <header class="headerwrapper">
+        <div class="headerbox"
+             style="flex:1">
+            <img class="headerimg"
+                 src="../static/main/images/IMG_1174.JPG"
+                 alt="Image of street in San Francisco from high up view."
+                 loading="lazy">
+        </div>
+
+
+    </header>
+
+    <nav>
+        <div class="navbartitle"><h1>Pavello</h1></div>
+        <div class="navicons">
+            <div class="navicon">
+                <a href="/home"
+                   title="Home Page">Home</a>
+            </div>
+            <div class="navicon">
+                <a href="/board-home"
+                   title="Boards page">Boards</a>
+            </div>
+            <div class="navicon">
+                <a href="/projects"
+                   title="Project page">Projects</a>
+            </div>
+            <div class="navicon">
+                {% if 'email' in session %}
+                    <a href="/logout">Logout</a>
+                {% else %}
+                    <a href="/login">Login</a>
+                {% endif %}
+            </div>
+
+        </div>
+        <!--    Check box for menu dropdown icon click    -->
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="menu">
+            <img class="linkedin" src="../static/main/images/menu-bar.png" alt="Menu" loading="lazy">
+        </label>
+        <!--    Menu drop down content    -->
+        <div class="menu-content">
+            <a href="/home">Home</a>
+            <a href="/boards">Boards</a>
+            {% if 'email' in session %}
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
+        </div>
+
+
+    </nav>
+
+    <!--  Main section content  -->
+    <main>
+
+        {% block maincontent %}{% endblock %}
+        {% block login %}{% endblock %}
+
+    </main>
+
+    <footer>
+        <div class="footerbox"
+             style="flex:1">
+            <p>© Pavel Shevchenko</p>
+        </div>
+
+
+    </footer>
+</body>
+
+{% block chatjs %}{% endblock %}
+
+<script src="../static/piano/js/piano.js" defer></script>
+<script src="../static/main/js/feedback.js" defer></script>
+
+
+
+
+
+

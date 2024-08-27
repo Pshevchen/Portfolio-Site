@@ -1,0 +1,191 @@
+/* HOME PAGE CONTENTS*/
+.homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    object-fit: contain;
+    width: 100vw;
+    height: 600px;
+    background-color: #333;
+    color: white;
+}
+
+
+/* Make sure navigation links are white*/
+nav a {
+    color: white;
+}
+
+/* Grid for self portrait and description */
+.aboutme {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 50px;
+    grid-gap: 10px;
+    width: 80vw;
+    min-height: 400px;
+    max-width: 80vw;
+    max-height: 50vh;
+}
+
+/* Description box */
+.aboutbox {
+    margin: 5px;
+    text-align: left;
+    overflow: auto;
+
+}
+
+/* Self portrait box */
+.selfphotobox {
+    overflow: hidden;
+    border: 3px solid black;
+}
+
+/* Box for fun fact */
+.fact {
+    width: 80vw;
+    max-width: 300px;
+    max-height: 150px;
+    padding: 10px;
+    text-align: center;
+    flex: 1;
+
+}
+
+/* Adjust self portrait image sizing*/
+.selfphotobox img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+/* HOME PAGE CONTENTS */
+
+/* PROJECT PAGE CONTENTS */
+
+/* Main body flex box of project page */
+.projectpage {
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    object-fit: contain;
+    width: 100vw;
+
+    color: white;
+}
+
+/* Page description */
+.projects {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    width: 80vw;
+    height: 150px;
+}
+
+/* Formatting for text */
+.projectbox p {
+    font-size: larger;
+}
+
+/* Formatting for description heading*/
+.projectpage h2 {
+    margin-top: 50px;
+    color: white;
+}
+
+/* make about box hyperlinks inherit */
+.aboutbox a {
+    font-style: inherit;
+}
+
+/* Grid for project image and description */
+.projectbox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    grid-gap: 10px;
+    width: 80vw;
+    height: 50vh;
+    min-height: 300px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+/* Styling for about box in project box */
+.projectbox + .aboutbox {
+    text-align: left;
+    height: 20vh;
+    vertical-align: middle;
+    align-items: center;
+}
+
+/* Styling for self portrait box in project box */
+.projectbox + .selfphotobox {
+    height: 100%;
+    max-width: 80%;
+    object-fit: scale-down;
+    overflow: unset;
+    overflow-x: hidden;
+}
+
+/* PROJECT PAGE CONTENTS */
+
+/* Resizing for mobile width */
+@media screen and (max-width: 650px) {
+    .homepage {
+        height: 1500px;
+        max-height: 3500px;
+    }
+    .aboutme {
+        display: flex;
+        flex-direction: column;
+        object-fit: contain;
+        border: none;
+        height: 100%;
+        max-height: 2000px;
+
+    }
+    .selfphotobox {
+        overflow: revert;
+        width: 80vw;
+        height: 100%;
+    }
+
+    .aboutbox {
+        border: none;
+        margin: 5px;
+        height: unset;
+        text-align: left;
+        overflow: visible;
+
+    }
+    .fact {
+        max-width: 300px;
+        max-height: 150px;
+        text-align: center;
+
+    }
+
+    .projectpage {
+        height: 1000px;
+    }
+
+    .projectbox {
+        display: flex;
+        flex-direction: column;
+        object-fit: contain;
+        border-bottom: 1px solid darkgray;
+        height: 650px;
+        padding-bottom: 0px;
+    }
+
+
+}
+

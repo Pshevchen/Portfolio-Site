@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block maincontent %}
+<div id="board-list">
+    {% for board, id in boards_ids %}
+    <div class='board' data-board-id='{{id}}'>
+        <div><h3>{{ board.name }}</h1></div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const boardLinks = document.querySelectorAll('.board');  // Ensure this targets the anchor tags within elements with the class 'board'
+
+        boardLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();  // Prevent the default anchor click behavior
+                const boardId = this.getAttribute('data-board-id');  // Get the board ID from data attribute; ensure your a tag has `data-board-id`
+                console.log(boardId);  // Use console.log to output in the browser console
+                window.location.href = `/board/${boardId}`;  // Redirect to the board page with the board ID
+            });
+        });
+    });
+</script>
+
+{% endblock %}
